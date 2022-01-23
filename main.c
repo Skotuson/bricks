@@ -4,6 +4,7 @@
 typedef struct {
     int sides[5];
     int sideCnt;
+    int count;
     int isUnique;
 } TBrick;
 
@@ -20,11 +21,13 @@ int readBrick ( TBrick ** bricks, int * size, int * max ) {
     int n;
     TBrick brick;
     brick.sideCnt = 0;
+    brick.count = 0;
     brick.isUnique = 1;
     int res;
     scanf(" [ ");
     while ( ( res = scanf( " %d %c ", &n, &c ) ) ) {
         brick.sides[brick.sideCnt++] = n;
+        brick.count += n;
         if ( res == -1 )
             return res;
         if ( c == ']' ) break;
@@ -48,7 +51,7 @@ void printBricks ( TBrick * bricks, int size ) {
 }
 
 int compareTwo ( TBrick a, TBrick b ) {
-    if ( a.sideCnt != b.sideCnt )
+    if ( a.count != b.count || a.sideCnt != b.sideCnt )
         return 0;
     int j = 0;
     int isMatching = 0;
