@@ -2,7 +2,7 @@
 #include <time.h>
 #include <math.h>
 
-#define TEST_COUNT 5
+#define TEST_COUNT 150
 
 void printArray ( int * arr, int l, int shift ) {
     printf("{ ");
@@ -18,16 +18,18 @@ void printArray ( int * arr, int l, int shift ) {
 
 void generateArr ( int * index ) {
     int n = rand ( ) % 99899 + 100;
-    int len = log10( n );
+    int len = log10( n ) + 1;
     int arr[5];
+    int sum = 0;
     for ( int i = 0; i < len; i++ ) {
         arr[i] = n % 10;
+        sum += n % 10;
         n /= 10;
     }
     for ( int i = 0; i < rand() % len + 1; i++ ) {
         printf( "bricks[%d] = { ", (*index)++ );
         printArray ( arr, len, i );
-        printf( ", %d, 1 };\n", len );
+        printf( ", %d, %d, 1 };\n", len, sum );
     }
 }
 
