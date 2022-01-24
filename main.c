@@ -55,20 +55,30 @@ int compareTwo ( TBrick a, TBrick b ) {
         return 0;
     int j = 0;
     int isMatching = 0;
+    int iter = 0;
     for ( int i = 0; i < b.sideCnt; i++ ) {
-        if ( b.sides[i] == a.sides[j] ) {
-            j++;
-            isMatching = 1;
-        } else {
+
+        if ( b.sides[i] != a.sides[j] ) {
             j = 0;
             isMatching = 0;
         }
+        
+        if ( b.sides[i] == a.sides[j] ) {
+            j++;
+            isMatching = 1;
+        } 
+
         if ( j + 1 == a.sideCnt )
             return 1;
+
         if ( i + 1 == b.sideCnt ) {
-            if ( isMatching )
+            if ( isMatching && !iter ) {
                 i = -1;
-            else return 0;
+                iter = 1;
+            }
+            else {
+                return 0;
+            }
         }
     }
     return 1;
