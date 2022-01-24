@@ -2,7 +2,7 @@
 #include <time.h>
 #include <math.h>
 
-#define TEST_COUNT 150
+#define TEST_COUNT 10000
 
 void printArray ( int * arr, int l, int shift ) {
     printf("{ ");
